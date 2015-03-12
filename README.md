@@ -154,7 +154,7 @@ congress, chamber, senate print number
 
 ####Example:
 
-http://api.fdsys.gov/link?collection=cprt&congress=112&chamber=senate&printnum=4
+* http://api.fdsys.gov/link?collection=cprt&congress=112&chamber=senate&printnum=4
 
 ###Query: 
 
