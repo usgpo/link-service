@@ -821,7 +821,7 @@ This error can occur for an invalid or unavailable link-type value. Allowable va
 
 ###System Error
 
-Please contact askGPO@gpo.gov to report any system errors encountered while using the Link Service. 
+Please contact contactcenter@gpo.gov to report any system errors encountered while using the Link Service. 
 
 Cheers!
 
