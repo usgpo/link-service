@@ -3,12 +3,22 @@ The Link Service is used to create links to content and metadata on FDsys.
 
 The service is currently available for the collections below. The collection code is listed in parenthesis after each collection name. The available queries and parameters are listed below each collection.
 
-##Code of Federal Regulations (CFR)
+# govinfo link service
 
-###Query: 
+GPO has released its link service for govinfo. It has all of the same functionality as the FDsys link service, but with a few additional link types and an easier to use set of documentation.
+
+For more information, see the interactive documentation available at https://www.govinfo.gov/link-docs/ . This link service has been built and documented using the [Open API Spec](https://github.com/OAI/OpenAPI-Specification) and [Swagger UI](https://github.com/swagger-api/swagger-ui)
+
+The parameters below are also available for the govinfo link service. High-level changes are:
+- `link-type` value of 'contentdetail' is now 'details'
+- the addition of the 'related' and 'context' values for `link-type`. These additional link types will provide access to the equivalent tabs on a govinfo details page, where available. 
+
+## Code of Federal Regulations (CFR)
+
+### Query: 
 title number, part number, section number, year OR most recent
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is cfr. 
 
@@ -22,7 +32,7 @@ title number, part number, section number, year OR most recent
 
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are xml, mods, premis, contentdetail. 
 
-####Examples:
+#### Examples:
 
 * http://api.fdsys.gov/link?collection=cfr&titlenum=3&partnum=100&sectionnum=1&year=2011
 
@@ -36,13 +46,13 @@ title number, part number, section number, year OR most recent
 
 * http://api.fdsys.gov/link?collection=cfr&titlenum=3&partnum=100 
 
-##Compilation of Presidential Documents (CPD)
+## Compilation of Presidential Documents (CPD)
 
-###Query: 
+### Query: 
 
 document type, document number
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is cpd. 
 
@@ -52,7 +62,7 @@ document type, document number
 
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail. 
 
-####Examples:
+#### Examples:
 
 * http://api.fdsys.gov/link?collection=cpd&doctype=proclamation&docnum=8685 
 
@@ -60,11 +70,11 @@ document type, document number
 
 * http://api.fdsys.gov/link?collection=cpd&docnum=94-35&doctype=determination 
 
-###Query: 
+### Query: 
 
 dcpd type OR dcpd number
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is cpd. 
 
@@ -77,19 +87,19 @@ dcpd type OR dcpd number
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail. 
 
 
-####Examples:
+#### Examples:
 
 * http://api.fdsys.gov/link?collection=cpd&dcpdnumber=00123&year=2010&link-type=contentdetail 
 
 * http://api.fdsys.gov/link?collection=cpd&dcpdtype=nominations&year=2011 
 
-##Congressional Bills (BILLS)
+## Congressional Bills (BILLS)
 
-###Query: 
+### Query: 
 
 bill number, bill type, congress, bill version OR most recent
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is bills.
 
@@ -104,19 +114,19 @@ as, cps, fph, lth, ppv, rds, rhv, rhuc, ash, eah, fps, lts, pap, rev, rih, sc, e
 
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are xml, html, mods, premis, contentdetail.
 
-####Examples:
+#### Examples:
 
 * http://api.fdsys.gov/link?collection=bills&billtype=hr&billversion=ih&billnum=1&congress=112
 
 * http://api.fdsys.gov/link?collection=bills&billtype=hconres&billnum=17&congress=112&link-type=xml 
 
-##Congressional Calendars (CCAL)
+## Congressional Calendars (CCAL)
 
-###Query: 
+### Query: 
 
 chamber, section, publish date OR most recent
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is ccal.
 
@@ -128,19 +138,19 @@ chamber, section, publish date OR most recent
 
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
 
-####Examples:
+#### Examples:
 
 * http://api.fdsys.gov/link?collection=ccal&chamber=senate&section=Subjects%20on%20the%20Table
 
 * http://api.fdsys.gov/link?collection=ccal&chamber=senate&section=Subjects%20on%20the%20Table&publishdate=2011-12-01 
 
-##Congressional Committee Prints (CPRT)
+## Congressional Committee Prints (CPRT)
 
-###Query: 
+### Query: 
 
 congress, chamber, senate print number
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is cprt.
 
@@ -152,15 +162,15 @@ congress, chamber, senate print number
 
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
 
-####Example:
+#### Example:
 
 * http://api.fdsys.gov/link?collection=cprt&congress=112&chamber=senate&printnum=4
 
-###Query: 
+### Query: 
 
 congress, chamber, house print number, committee
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is cprt.
 
@@ -174,15 +184,15 @@ congress, chamber, house print number, committee
 
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
 
-####Example:
+#### Example:
 
 * http://api.fdsys.gov/link?collection=cprt&congress=109&chamber=house&printnum=2&committee=Ways+and+Means
 
-###Query: 
+### Query: 
 
 congress, jacket number
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is cprt.
 
@@ -192,17 +202,17 @@ congress, jacket number
 
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
 
-####Examples:
+#### Examples:
 
 * http://api.fdsys.gov/link?collection=cprt&congress=112&jacketid=74-558
 
-##Congressional Documents (CDOC)
+## Congressional Documents (CDOC)
 
-###Query: 
+### Query: 
 
 congress, document type, document number
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is cdoc.
 
@@ -212,15 +222,15 @@ congress, document type, document number
 
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
 
-####Examples:
+#### Examples:
 
 * http://api.fdsys.gov/link?collection=cdoc&congress=112&docnum=5&doctype=hdoc
 
-###Query: 
+### Query: 
 
 congress, jacket number
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is cdoc.
 
@@ -230,17 +240,17 @@ congress, jacket number
 
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
 
-####Examples:
+#### Examples:
 
 * http://api.fdsys.gov/link?collection=cdoc&congress=112&jacketid=66-208 
 
-##Congressional Hearings (CHRG)
+## Congressional Hearings (CHRG)
 
-###Query: 
+### Query: 
 
 congress, chamber, senate hearing number
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is chrg.
 
@@ -252,15 +262,15 @@ congress, chamber, senate hearing number
 
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
 
-####Example:
+#### Example:
 
 * http://api.fdsys.gov/link?collection=chrg&chamber=senate&congress=112&hearingnumber=122
 
-###Query: 
+### Query: 
 
 congress, chamber, committee, house serial number
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is chrg.
 
@@ -272,15 +282,15 @@ congress, chamber, committee, house serial number
 
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
 
-####Example:
+#### Example:
 
 * http://api.fdsys.gov/link?collection=chrg&chamber=house&congress=109&serialnumber=138&committee=energy
 
-###Query: 
+### Query: 
 
 congress, jacket number
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is chrg.
 
@@ -290,17 +300,17 @@ congress, jacket number
 
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
 
-####Example:
+#### Example:
 
 * http://api.fdsys.gov/link?collection=chrg&congress=105&jacketid=48-707&link-type=html 
 
-##Congressional Record - Daily (CREC)
+## Congressional Record - Daily (CREC)
 
-###Query: 
+### Query: 
 
 volume, page prefix, page number
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is crec.
 
@@ -312,15 +322,15 @@ volume, page prefix, page number
 
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
 
-####Examples:
+#### Examples:
 
 * http://api.fdsys.gov/link?collection=crec&pageprefix=s&page=234&volume=158
 
-###Query: 
+### Query: 
 
 section, publish date OR most recent
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is crec.
 
@@ -330,17 +340,17 @@ section, publish date OR most recent
 
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are mods, premis, contentdetail. Note: mods, premis, and contentdetail are returned at the package level because they are not available for section level granules.
 
-####Examples:
+#### Examples:
 
 * http://api.fdsys.gov/link?collection=crec&section=dailydigest
 
 * http://api.fdsys.gov/link?collection=crec&section=dailydigest&publishdate=2011-11-22
 
-###Query: 
+### Query: 
 
 document type, publish date OR most recent
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is crec.
 
@@ -350,15 +360,15 @@ document type, publish date OR most recent
 
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
 
-####Examples:
+#### Examples:
 
 * http://api.fdsys.gov/link?collection=crec&type=hclerk
 
-####Type Values 
+#### Type Values 
 
 The information below lists the allowable values for the type field. Values are not case sensitive. Note: some values may produce multiple results. For example, both the House section and Senate section could contain a tributeto granule on the same day. In this case, the desired document may not be returned. 
 
-#####Daily Digest Type Values
+##### Daily Digest Type Values
 
 Type Value | User Readable Value
 
@@ -384,7 +394,7 @@ DDRESUMEFINAL | Resume of Congressional Activity - Final
 
 DDENDMATTER | End Matter
 
-#####House, Senate, and Extensions of Remarks Type Values
+##### House, Senate, and Extensions of Remarks Type Values
 
 Type Value | User Readable Value
 
@@ -432,7 +442,7 @@ DESIGNATING | Designating
 
 INMEMORYOF | In Memory Of
 
-#####House Type Values
+##### House Type Values
 
 Type Value | User Readable Value
 
@@ -486,7 +496,7 @@ HAMENDMENTS | Amendments
 
 HEARMARKS | Congressional Earmarks, Limited Tax Benefits, Or Limited Tariff Benefits
 
-#####Senate Type Values
+##### Senate Type Values
 
 Type Value | User Readable Value
 
@@ -574,7 +584,7 @@ SCONFIRMATIONS | Confirmation
 
 SCLOTURE | Cloture Motion
 
-#####Extensions of Remarks Type Values
+##### Extensions of Remarks Type Values
 
 Type Value | User Readable Value
 
@@ -582,13 +592,13 @@ ESENATECOMMITTEE | Senate Committee Meetings
 
 EINTRODUCTIONOF | Introducing Legislation
 
-##Congressional Reports (CRPT)
+## Congressional Reports (CRPT)
 
-###Query: 
+### Query: 
 
 congress, report type, report number
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is crpt.
 
@@ -600,15 +610,15 @@ congress, report type, report number
 
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
 
-####Examples:
+#### Examples:
 
 * http://api.fdsys.gov/link?collection=crpt&congress=112&reportnum=154&doctype=srpt
 
-###Query: 
+### Query: 
 
 associated bill, congress
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is crpt.
 
@@ -618,17 +628,17 @@ associated bill, congress
 
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
 
-####Examples:
+#### Examples:
 
 * http://api.fdsys.gov/link?collection=crpt&associatedbillnum=h.r.2297&congress=112
 
-##Federal Register (FR)
+## Federal Register (FR)
 
-###Query: 
+### Query: 
 
 volume, page number
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is fr.
 
@@ -638,15 +648,15 @@ volume, page number
 
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
 
-####Examples:
+#### Examples:
 
 * http://api.fdsys.gov/link?collection=fr&volume=76&page=575
 
-###Query: 
+### Query: 
 
 Federal Register document number
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is fr.
 
@@ -654,17 +664,17 @@ Federal Register document number
 
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
 
-####Examples:
+#### Examples:
 
 * http://api.fdsys.gov/link?collection=fr&frdocnum=2010-32535
 
-##Public and Private Laws (PLAW)
+## Public and Private Laws (PLAW)
 
-###Query: 
+### Query: 
 
 congress, law type, law number
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is plaw.
 
@@ -676,16 +686,16 @@ congress, law type, law number
 
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
 
-####Example:
+#### Example:
 
 * http://api.fdsys.gov/link?collection=plaw&congress=111&lawtype=public&lawnum=78
 
 
-###Query: 
+### Query: 
 
 associated bill number, congress
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is plaw.
 
@@ -695,15 +705,15 @@ associated bill number, congress
 
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
 
-####Example:
+#### Example:
 
 * http://api.fdsys.gov/link?collection=plaw&associatedbillnum=s.3397&congress=111
 
-###Query: 
+### Query: 
 
 Statutes at Large citation
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is plaw.
 
@@ -711,17 +721,17 @@ Statutes at Large citation
 
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
 
-####Example:
+#### Example:
 
 * http://api.fdsys.gov/link?collection=plaw&statutecitation=124+stat+2859 
 
-##Statutes at Large (STATUTE)
+## Statutes at Large (STATUTE)
 
-###Query: 
+### Query: 
 
 congress, law type, law number
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is statute.
 
@@ -733,15 +743,15 @@ congress, law type, law number
 
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
 
-####Example:
+#### Example:
 
 * http://api.fdsys.gov/link?collection=statute&congress=108&lawtype=public&lawnum=481
 
-###Query: 
+### Query: 
 
 volume, page number
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is statute.
 
@@ -751,17 +761,17 @@ volume, page number
 
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
 
-####Example:
+#### Example:
 
 * http://api.fdsys.gov/link?collection=statute&volume=118&page=3910
 
-##United States Code (USCODE)
+## United States Code (USCODE)
 
-###Query: 
+### Query: 
 
 title number, type, section, year OR most recent
 
-####Parameters:
+#### Parameters:
 
 * collection: Required - Value is uscode.
 
@@ -774,7 +784,7 @@ year Optional - This is the four digit numerical year OR mostrecent. If year is 
 
 * link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
 
-####Examples:
+#### Examples:
 
 * http://api.fdsys.gov/link?collection=uscode&title=50&year=2011&section=797&type=usc
 
@@ -790,17 +800,17 @@ year Optional - This is the four digit numerical year OR mostrecent. If year is 
 
 * http://api.fdsys.gov/link?collection=uscode&title=50&year=2011&section=2410c&type=uscappendix
 
-##Common Errors:
+## Common Errors:
 
-###Multiple Results Found
+### Multiple Results Found
 
 This error occurs when more than one document matches parameters for a given request. Additional parameters must be specified in order to return a single document.
 
-###No Results Found
+### No Results Found
 
 This error occurs if a match document was not found for the given parameters. Please check the API documentation to make sure values provided are correct.
 
-###Validation Failed
+### Validation Failed
 
 This error occurs when request parameters fail validation. Possible causes include the following:
 
@@ -810,11 +820,11 @@ This error occurs when request parameters fail validation. Possible causes inclu
 
 * The value provided for XXXX is invalid. One of the following [XXXX, YYYY] is expected. This error occurs if a value provided for a parameter is not among the listed choices. Please check the documentation for parameter values.
 
-###Content File Not Found
+### Content File Not Found
 
 This error can occur for an invalid or unavailable link-type value. Allowable values are pdf, html, mods, premis and contentdetail. This error can also occur if a requested link-type is not available for a specific document.
 
-###System Error
+### System Error
 
 Please contact contactcenter@gpo.gov to report any system errors encountered while using the Link Service. 
 
