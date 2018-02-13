@@ -34,17 +34,17 @@ title number, part number, section number, year OR most recent
 
 #### Examples:
 
-* http://api.fdsys.gov/link?collection=cfr&titlenum=3&partnum=100&sectionnum=1&year=2011
+* https://api.fdsys.gov/link?collection=cfr&titlenum=3&partnum=100&sectionnum=1&year=2011
 
-* http://api.fdsys.gov/link?collection=cfr&titlenum=3&partnum=100&sectionnum=1&year=mostrecent
+* https://api.fdsys.gov/link?collection=cfr&titlenum=3&partnum=100&sectionnum=1&year=mostrecent
 
-* http://api.fdsys.gov/link?collection=cfr&titlenum=3&partnum=100&sectionnum=1
+* https://api.fdsys.gov/link?collection=cfr&titlenum=3&partnum=100&sectionnum=1
 
-* http://api.fdsys.gov/link?collection=cfr&titlenum=3&partnum=100&sectionnum=1&link-type=premis
+* https://api.fdsys.gov/link?collection=cfr&titlenum=3&partnum=100&sectionnum=1&link-type=premis
 
-* http://api.fdsys.gov/link?collection=cfr&titlenum=3&partnum=100&sectionnum=1&link-type=mods
+* https://api.fdsys.gov/link?collection=cfr&titlenum=3&partnum=100&sectionnum=1&link-type=mods
 
-* http://api.fdsys.gov/link?collection=cfr&titlenum=3&partnum=100 
+* https://api.fdsys.gov/link?collection=cfr&titlenum=3&partnum=100 
 
 ## Compilation of Presidential Documents (CPD)
 
@@ -64,11 +64,11 @@ document type, document number
 
 #### Examples:
 
-* http://api.fdsys.gov/link?collection=cpd&doctype=proclamation&docnum=8685 
+* https://api.fdsys.gov/link?collection=cpd&doctype=proclamation&docnum=8685 
 
-* http://api.fdsys.gov/link?collection=cpd&doctype=executiveorder&docnum=13514&link-type=html 
+* https://api.fdsys.gov/link?collection=cpd&doctype=executiveorder&docnum=13514&link-type=html 
 
-* http://api.fdsys.gov/link?collection=cpd&docnum=94-35&doctype=determination 
+* https://api.fdsys.gov/link?collection=cpd&docnum=94-35&doctype=determination 
 
 ### Query: 
 
@@ -89,9 +89,9 @@ dcpd type OR dcpd number
 
 #### Examples:
 
-* http://api.fdsys.gov/link?collection=cpd&dcpdnumber=00123&year=2010&link-type=contentdetail 
+* https://api.fdsys.gov/link?collection=cpd&dcpdnumber=00123&year=2010&link-type=contentdetail 
 
-* http://api.fdsys.gov/link?collection=cpd&dcpdtype=nominations&year=2011 
+* https://api.fdsys.gov/link?collection=cpd&dcpdtype=nominations&year=2011 
 
 ## Congressional Bills (BILLS)
 
@@ -116,9 +116,9 @@ as, cps, fph, lth, ppv, rds, rhv, rhuc, ash, eah, fps, lts, pap, rev, rih, sc, e
 
 #### Examples:
 
-* http://api.fdsys.gov/link?collection=bills&billtype=hr&billversion=ih&billnum=1&congress=112
+* https://api.fdsys.gov/link?collection=bills&billtype=hr&billversion=ih&billnum=1&congress=112
 
-* http://api.fdsys.gov/link?collection=bills&billtype=hconres&billnum=17&congress=112&link-type=xml 
+* https://api.fdsys.gov/link?collection=bills&billtype=hconres&billnum=17&congress=112&link-type=xml 
 
 ## Congressional Calendars (CCAL)
 
@@ -140,7 +140,7 @@ chamber, section, publish date OR most recent
 
 #### Examples:
 
-* http://api.fdsys.gov/link?collection=ccal&chamber=senate&section=Subjects%20on%20the%20Table
+* https://api.fdsys.gov/link?collection=ccal&chamber=senate&section=Subjects%20on%20the%20Table
 
 * http://api.fdsys.gov/link?collection=ccal&chamber=senate&section=Subjects%20on%20the%20Table&publishdate=2011-12-01 
 
@@ -164,7 +164,7 @@ congress, chamber, senate print number
 
 #### Example:
 
-* http://api.fdsys.gov/link?collection=cprt&congress=112&chamber=senate&printnum=4
+* https://api.fdsys.gov/link?collection=cprt&congress=112&chamber=senate&printnum=4
 
 ### Query: 
 
@@ -186,7 +186,7 @@ congress, chamber, house print number, committee
 
 #### Example:
 
-* http://api.fdsys.gov/link?collection=cprt&congress=109&chamber=house&printnum=2&committee=Ways+and+Means
+* https://api.fdsys.gov/link?collection=cprt&congress=109&chamber=house&printnum=2&committee=Ways+and+Means
 
 ### Query: 
 
@@ -204,7 +204,7 @@ congress, jacket number
 
 #### Examples:
 
-* http://api.fdsys.gov/link?collection=cprt&congress=112&jacketid=74-558
+* https://api.fdsys.gov/link?collection=cprt&congress=112&jacketid=74-558
 
 ## Congressional Documents (CDOC)
 
@@ -224,7 +224,7 @@ congress, document type, document number
 
 #### Examples:
 
-* http://api.fdsys.gov/link?collection=cdoc&congress=112&docnum=5&doctype=hdoc
+* https://api.fdsys.gov/link?collection=cdoc&congress=112&docnum=5&doctype=hdoc
 
 ### Query: 
 
@@ -242,7 +242,7 @@ congress, jacket number
 
 #### Examples:
 
-* http://api.fdsys.gov/link?collection=cdoc&congress=112&jacketid=66-208 
+* https://api.fdsys.gov/link?collection=cdoc&congress=112&jacketid=66-208 
 
 ## Congressional Hearings (CHRG)
 
@@ -264,7 +264,7 @@ congress, chamber, senate hearing number
 
 #### Example:
 
-* http://api.fdsys.gov/link?collection=chrg&chamber=senate&congress=112&hearingnumber=122
+* https://api.fdsys.gov/link?collection=chrg&chamber=senate&congress=112&hearingnumber=122
 
 ### Query: 
 
@@ -284,7 +284,7 @@ congress, chamber, committee, house serial number
 
 #### Example:
 
-* http://api.fdsys.gov/link?collection=chrg&chamber=house&congress=109&serialnumber=138&committee=energy
+* https://api.fdsys.gov/link?collection=chrg&chamber=house&congress=109&serialnumber=138&committee=energy
 
 ### Query: 
 
@@ -302,7 +302,7 @@ congress, jacket number
 
 #### Example:
 
-* http://api.fdsys.gov/link?collection=chrg&congress=105&jacketid=48-707&link-type=html 
+* https://api.fdsys.gov/link?collection=chrg&congress=105&jacketid=48-707&link-type=html 
 
 ## Congressional Record - Daily (CREC)
 
@@ -324,7 +324,7 @@ volume, page prefix, page number
 
 #### Examples:
 
-* http://api.fdsys.gov/link?collection=crec&pageprefix=s&page=234&volume=158
+* https://api.fdsys.gov/link?collection=crec&pageprefix=s&page=234&volume=158
 
 ### Query: 
 
@@ -342,9 +342,9 @@ section, publish date OR most recent
 
 #### Examples:
 
-* http://api.fdsys.gov/link?collection=crec&section=dailydigest
+* https://api.fdsys.gov/link?collection=crec&section=dailydigest
 
-* http://api.fdsys.gov/link?collection=crec&section=dailydigest&publishdate=2011-11-22
+* https://api.fdsys.gov/link?collection=crec&section=dailydigest&publishdate=2011-11-22
 
 ### Query: 
 
@@ -362,7 +362,7 @@ document type, publish date OR most recent
 
 #### Examples:
 
-* http://api.fdsys.gov/link?collection=crec&type=hclerk
+* https://api.fdsys.gov/link?collection=crec&type=hclerk
 
 #### Type Values 
 
@@ -612,7 +612,7 @@ congress, report type, report number
 
 #### Examples:
 
-* http://api.fdsys.gov/link?collection=crpt&congress=112&reportnum=154&doctype=srpt
+* https://api.fdsys.gov/link?collection=crpt&congress=112&reportnum=154&doctype=srpt
 
 ### Query: 
 
@@ -630,7 +630,7 @@ associated bill, congress
 
 #### Examples:
 
-* http://api.fdsys.gov/link?collection=crpt&associatedbillnum=h.r.2297&congress=112
+* https://api.fdsys.gov/link?collection=crpt&associatedbillnum=h.r.2297&congress=112
 
 ## Federal Register (FR)
 
@@ -650,7 +650,7 @@ volume, page number
 
 #### Examples:
 
-* http://api.fdsys.gov/link?collection=fr&volume=76&page=575
+* https://api.fdsys.gov/link?collection=fr&volume=76&page=575
 
 ### Query: 
 
@@ -666,7 +666,7 @@ Federal Register document number
 
 #### Examples:
 
-* http://api.fdsys.gov/link?collection=fr&frdocnum=2010-32535
+* https://api.fdsys.gov/link?collection=fr&frdocnum=2010-32535
 
 ## Public and Private Laws (PLAW)
 
@@ -688,7 +688,7 @@ congress, law type, law number
 
 #### Example:
 
-* http://api.fdsys.gov/link?collection=plaw&congress=111&lawtype=public&lawnum=78
+* https://api.fdsys.gov/link?collection=plaw&congress=111&lawtype=public&lawnum=78
 
 
 ### Query: 
@@ -707,7 +707,7 @@ associated bill number, congress
 
 #### Example:
 
-* http://api.fdsys.gov/link?collection=plaw&associatedbillnum=s.3397&congress=111
+* https://api.fdsys.gov/link?collection=plaw&associatedbillnum=s.3397&congress=111
 
 ### Query: 
 
@@ -723,7 +723,7 @@ Statutes at Large citation
 
 #### Example:
 
-* http://api.fdsys.gov/link?collection=plaw&statutecitation=124+stat+2859 
+* https://api.fdsys.gov/link?collection=plaw&statutecitation=124+stat+2859 
 
 ## Statutes at Large (STATUTE)
 
@@ -745,7 +745,7 @@ congress, law type, law number
 
 #### Example:
 
-* http://api.fdsys.gov/link?collection=statute&congress=108&lawtype=public&lawnum=481
+* https://api.fdsys.gov/link?collection=statute&congress=108&lawtype=public&lawnum=481
 
 ### Query: 
 
@@ -763,7 +763,7 @@ volume, page number
 
 #### Example:
 
-* http://api.fdsys.gov/link?collection=statute&volume=118&page=3910
+* https://api.fdsys.gov/link?collection=statute&volume=118&page=3910
 
 ## United States Code (USCODE)
 
@@ -786,19 +786,19 @@ year Optional - This is the four digit numerical year OR mostrecent. If year is 
 
 #### Examples:
 
-* http://api.fdsys.gov/link?collection=uscode&title=50&year=2011&section=797&type=usc
+* https://api.fdsys.gov/link?collection=uscode&title=50&year=2011&section=797&type=usc
 
-* http://api.fdsys.gov/link?collection=uscode&title=50&year=2011&section=797
+* https://api.fdsys.gov/link?collection=uscode&title=50&year=2011&section=797
 
-* http://api.fdsys.gov/link?collection=uscode&title=50&year=mostrecent&section=797
+* https://api.fdsys.gov/link?collection=uscode&title=50&year=mostrecent&section=797
 
-* http://api.fdsys.gov/link?collection=uscode&title=50&section=797&link-type=html
+* https://api.fdsys.gov/link?collection=uscode&title=50&section=797&link-type=html
 
-* http://api.fdsys.gov/link?collection=uscode&title=50&year=2011&section=2403-1&type=uscappendix
+* https://api.fdsys.gov/link?collection=uscode&title=50&year=2011&section=2403-1&type=uscappendix
 
-* http://api.fdsys.gov/link?collection=uscode&title=50&year=2011&section=2403-1a&type=uscappendix
+* https://api.fdsys.gov/link?collection=uscode&title=50&year=2011&section=2403-1a&type=uscappendix
 
-* http://api.fdsys.gov/link?collection=uscode&title=50&year=2011&section=2410c&type=uscappendix
+* https://api.fdsys.gov/link?collection=uscode&title=50&year=2011&section=2410c&type=uscappendix
 
 ## Common Errors:
 
