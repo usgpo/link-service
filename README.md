@@ -493,9 +493,8 @@ Type Value | User Readable Value
 
 |Type Value | User Readable Value|
 |-----------|--------------------|
-ESENATECOMMITTEE | Senate Committee Meetings
-
-EINTRODUCTIONOF | Introducing Legislation
+|ESENATECOMMITTEE | Senate Committee Meetings|
+|EINTRODUCTIONOF | Introducing Legislation|
 
 ## Congressional Reports (CRPT)
 
