@@ -370,224 +370,129 @@ The information below lists the allowable values for the type field. Values are 
 
 ##### Daily Digest Type Values
 
-Type Value | User Readable Value
-
-DDALLOTHER | All Other
-
-DDSCHAMBER | Senate Chamber Action
-
-DDSCMEETINGS | Senate Committee Meetings
-
-DDHCHAMBER | House Chamber Action
-
-DDHCMEETINGS | House Committee Meetings
-
-DDNEWPUBLAWS | New Public Laws
-
-DDAHEAD | Congressional Program Ahead
-
-DDCOMMITTEEMEETINGS | Committee Meetings Upcoming
-
-DDRESUMEONGOING | Resume of Congressional Activity - Ongoing
-
-DDRESUMEFINAL | Resume of Congressional Activity - Final
-
-DDENDMATTER | End Matter
+|Type Value | User Readable Value|
+|-----------|----------|
+|DDALLOTHER | All Other|
+|DDSCHAMBER | Senate Chamber Action|
+|DDSCMEETINGS | Senate Committee Meetings|
+|DDHCHAMBER | House Chamber Action|
+|DDHCMEETINGS | House Committee Meetings|
+|DDNEWPUBLAWS | New Public Laws|
+|DDAHEAD | Congressional Program Ahead|
+|DDCOMMITTEEMEETINGS | Committee Meetings Upcoming|
+|DDRESUMEONGOING | Resume of Congressional Activity - Ongoing|
+|DDRESUMEFINAL | Resume of Congressional Activity - Final|
+|DDENDMATTER | End Matter|
 
 ##### House, Senate, and Extensions of Remarks Type Values
 
-Type Value | User Readable Value
+|Type Value | User Readable Value|
+|-----------|--------------------|
+|ALLOTHER | All Other Legislative Business|
+|PRAYER | Prayer|
+|PLEDGE | Pledge of Allegiance|
+|ADJOURNMENT | Adjournment|
+|EXECUTIVECOMM | Executive and other Communications|
+|JOINTMEETINGS | Joint Meetings of the House and Senate|
+|ENROLLEDSIGNED | Enrolled Legislation Signed|
+|ENROLLEDPRESENTED | Enrolled Legislation Presented|
+|MSGPRESIDENT | Messages From the President|
+|TECHNICALCORRECTIONS | Making Technical Corrections|
+|PERSONALEXPLAIN | Personal Explanation|
+|RECOGNIZING | Recognitions|
+|HONORING | Honoring|
+|COMMEMORATING | Commemorations|
+|CELEBRATING | Celebrations|
+|COMMENDING | Commending|
+|PASSINGOF | On the passing of|
+|TRIBUTETO | Tribute|
+|CONGRATULATIONS | Congratulations|
+|RETIREMENT | Retirement Of|
+|DESIGNATING | Designating|
+|INMEMORYOF | In Memory Of|
 
-ALLOTHER | All Other Legislative Business
-
-PRAYER | Prayer
-
-PLEDGE | Pledge of Allegiance
-
-ADJOURNMENT | Adjournment
-
-EXECUTIVECOMM | Executive and other Communications
-
-JOINTMEETINGS | Joint Meetings of the House and Senate
-
-ENROLLEDSIGNED | Enrolled Legislation Signed
-
-ENROLLEDPRESENTED | Enrolled Legislation Presented
-
-MSGPRESIDENT | Messages From the President
-
-TECHNICALCORRECTIONS | Making Technical Corrections
-
-PERSONALEXPLAIN | Personal Explanation
-
-RECOGNIZING | Recognitions
-
-HONORING | Honoring
-
-COMMEMORATING | Commemorations
-
-CELEBRATING | Celebrations
-
-COMMENDING | Commending
-
-PASSINGOF | On the passing of
-
-TRIBUTETO | Tribute
-
-CONGRATULATIONS | Congratulations
-
-RETIREMENT | Retirement Of
-
-DESIGNATING | Designating
-
-INMEMORYOF | In Memory Of
 
 ##### House Type Values
 
 Type Value | User Readable Value
-
-HDESIGNATION | Designation of The Speaker Pro Tempore
-
-HJOURNAL | The Journal
-
-HMESSAGE | Message From the Senate
-
-HCLERK | Communication From The Clerk of the House
-
-HANNOUNCEMENT | Announcement by the Speaker
-
-HMORNINGDEBATE | Morning Hour Debates
-
-HREPORTON | Report On
-
-HCONFREPORTON | Conference Report On
-
-HSENATEBILLREFERRED | Senate Bill Referred
-
-HLEGPROGRAM | Legislative Program
-
-HTIMELIMIT | Time Limitation Of Referred Bill
-
-HEXPENDITURE | Expenditure Reports Concerning Official Foreign Travel
-
-HCORRECTIONS | Honoring
-
-COMMEMORATING | Commemorations
-
-CELEBRATING | Celebrations
-
-COMMENDING | Commending
-
-PASSINGOF | On the passing of
-
-TRIBUTETO | Tribute
-
-CONGRATULATIONS | Congratulations
-
-RETIREMENT | Retirement Of
-
-DESIGNATING | Designating
-
-INMEMORYOF | In Memory Of
-
-HPETITIONS | Petitions
-
-HAMENDMENTS | Amendments
-
-HEARMARKS | Congressional Earmarks, Limited Tax Benefits, Or Limited Tariff Benefits
+|-----------|---------------------|
+|HDESIGNATION | Designation of The Speaker Pro Tempore|
+|HJOURNAL | The Journal|
+|HMESSAGE | Message From the Senate|
+|HCLERK | Communication From The Clerk of the House|
+|HANNOUNCEMENT | Announcement by the Speaker|
+|HMORNINGDEBATE | Morning Hour Debates|
+|HREPORTON | Report On|
+|HCONFREPORTON | Conference Report On|
+|HSENATEBILLREFERRED | Senate Bill Referred|
+|HLEGPROGRAM | Legislative Program|
+|HTIMELIMIT | Time Limitation Of Referred Bill|
+|HEXPENDITURE | Expenditure Reports Concerning Official Foreign Travel|
+|HCORRECTIONS | Honoring|
+|COMMEMORATING | Commemorations|
+|CELEBRATING | Celebrations|
+|COMMENDING | Commending|
+|PASSINGOF | On the passing of|
+|TRIBUTETO | Tribute|
+|CONGRATULATIONS | Congratulations|
+|RETIREMENT | Retirement Of|
+|DESIGNATING | Designating|
+|INMEMORYOF | In Memory Of|
+|HPETITIONS | Petitions|
+|HAMENDMENTS | Amendments|
+|HEARMARKS | Congressional Earmarks, Limited Tax Benefits, Or Limited Tariff Benefits|
 
 ##### Senate Type Values
 
-Type Value | User Readable Value
-
-SENATEALLOTHER | All Other Legislative Business
-
-SAPPOINTMENT | Appointment of The Acting President Pro Tempore
-
-SORDER | Order of Procedure
-
-SSCHEDULE | Schedule
-
-SSSCHEDULE | Senate Schedule
-
-SMEASUREDCAL | Measures Placed on the Calendar
-
-SMBUSINESS | Morning Business
-
-SCONBUSINESS | Conclusion of Morning Business
-
-SRECESS | Recess
-
-SADDITIONAL | Additional Statements
-
-SMSGHOUSE | Message From the House
-
-SCOMMREPORT | Reports of Committees
-
-SEXECREPORT | Executive Reports of Committees
-
-SPETANDMEM | Petitions and Memorials
-
-SREFERRED | Measures Referred
-
-SREADFIRST | Measures Read the First Time
-
-SDISCHARGED | Measures Discharged
-
-SDICHARGEREF | Discharge and Referral
-
-SMSGEXEC | Executive Messages Referred
-
-SINTROBILLS | Introduction of Bills and Joint Resolutions
-
-SSUBMISSION | Submission of Concurrent and Senate Resolutions
-
-SCOSPONSORS | Additional Cosponsors
-
-SSTATEMENTS | Statements on Introduced Bills and Joint Resolutions
-
-SSUBMITTED | Submitted Resolutions
-
-SRESOLUTION | Senate Resolution
-
-SAMENDMENTSSUB | Amendments Submitted and Proposed
-
-SAMENDMENTTEXT | Text of Amendments
-
-SNOTICE | Notice of Hearings
-
-SAUTHORITY | Authority for Committees to Meet
-
-SPRIVILEGES | Privileges of the Floor
-
-SPROGRAM | Program
-
-SCALENDAR | The Calendar
-
-SCONSENTAGREE | Unanimous Consent Agreement
-
-SCONSENTREQUEST | Unanimous Consent Request
-
-SORDERFOR | Order For
-
-SEXECSESSION | Executive Session
-
-SEXECCAL | Executive Calendar
-
-SLEGISLATIVE | Legislative Session
-
-SNOMINATIONS | Nominations
-
-SWITHDRAWAL | Withdrawals
-
-SCONFIRMATIONS | Confirmation
-
-SCLOTURE | Cloture Motion
+|Type Value | User Readable Value|
+|-----------|---------------------|
+|SENATEALLOTHER | All Other Legislative Business|
+|SAPPOINTMENT | Appointment of The Acting President Pro Tempore|
+|SORDER | Order of Procedure|
+|SSCHEDULE | Schedule|
+|SSSCHEDULE | Senate Schedule|
+|SMEASUREDCAL | Measures Placed on the Calendar|
+|SMBUSINESS | Morning Business|
+|SCONBUSINESS | Conclusion of Morning Business|
+|SRECESS | Recess|
+|SADDITIONAL | Additional Statements|
+|SMSGHOUSE | Message From the House|
+|SCOMMREPORT | Reports of Committees|
+|SEXECREPORT | Executive Reports of Committees|
+|SPETANDMEM | Petitions and Memorials|
+|SREFERRED | Measures Referred|
+|SREADFIRST | Measures Read the First Time|
+|SDISCHARGED | Measures Discharged|
+|SDICHARGEREF | Discharge and Referral|
+|SMSGEXEC | Executive Messages Referred|
+|SINTROBILLS | Introduction of Bills and Joint Resolutions|
+|SSUBMISSION | Submission of Concurrent and Senate Resolutions|
+|SCOSPONSORS | Additional Cosponsors|
+|SSTATEMENTS | Statements on Introduced Bills and Joint Resolutions|
+|SSUBMITTED | Submitted Resolutions|
+|SRESOLUTION | Senate Resolution|
+|SAMENDMENTSSUB | Amendments Submitted and Proposed|
+|SAMENDMENTTEXT | Text of Amendments|
+|SNOTICE | Notice of Hearings|
+|SAUTHORITY | Authority for Committees to Meet|
+|SPRIVILEGES | Privileges of the Floor|
+|SPROGRAM | Program|
+|SCALENDAR | The Calendar|
+|SCONSENTAGREE | Unanimous Consent Agreement|
+|SCONSENTREQUEST | Unanimous Consent Request|
+|SORDERFOR | Order For|
+|SEXECSESSION | Executive Session|
+|SEXECCAL | Executive Calendar|
+|SLEGISLATIVE | Legislative Session|
+|SNOMINATIONS | Nominations|
+|SWITHDRAWAL | Withdrawals|
+|SCONFIRMATIONS | Confirmation|
+|SCLOTURE | Cloture Motion|
 
 ##### Extensions of Remarks Type Values
 
-Type Value | User Readable Value
-
+|Type Value | User Readable Value|
+|-----------|--------------------|
 ESENATECOMMITTEE | Senate Committee Meetings
 
 EINTRODUCTIONOF | Introducing Legislation
