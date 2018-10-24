@@ -1,3 +1,5 @@
+>In December 2018, the FDsys website including the FDsys Bulk Data Repository, FDsys Sitemaps, and the FDsys Link Service will be retired. Please migrate tools and processes to [govinfo](https://www.govinfo.gov/developers).
+
 # link-service
 The Link Service is used to create links to content and metadata on FDsys.
 
