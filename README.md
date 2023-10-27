@@ -1,712 +1,761 @@
->In December 2018, the FDsys website including the FDsys Bulk Data Repository, FDsys Sitemaps, and the FDsys Link Service was retired. Please migrate tools and processes to [govinfo](https://www.govinfo.gov/developers).
-
 # link-service
-The Link Service is used to create links to content and metadata on FDsys.
 
-The service is currently available for the collections below. The collection code is listed in parenthesis after each collection name. The available queries and parameters are listed below each collection.
-
-# govinfo link service
-
-GPO has released its link service for govinfo. It has all of the same functionality as the FDsys link service, but with a few additional link types and an easier to use set of documentation.
+The Link Service is used to create links to content and metadata on GovInfo. This allows for both predictable link creation as well as the ability to point to the latest version of a given resource - like the latest version of a Congressional Bill or latest edition of a CFR section.
 
 For more information, see the interactive documentation available at https://www.govinfo.gov/link-docs/ . This link service has been built and documented using the [Open API Spec](https://github.com/OAI/OpenAPI-Specification) and [Swagger UI](https://github.com/swagger-api/swagger-ui)
 
-The parameters below are also available for the govinfo link service. High-level changes are:
-- `link-type` value of 'contentdetail' is now 'details'
-- the addition of the 'related' and 'context' values for `link-type`. These additional link types will provide access to the equivalent tabs on a govinfo details page, where available. 
-
 ## Code of Federal Regulations (CFR)
 
-### Query: 
-title number, part number, section number, year OR most recent
+### CFR Title and Part Query
 
-#### Parameters:
+Returns a specific CFR Title and part, including the ability to specify a particular section
 
-* collection: Required - Value is cfr. 
+#### Parameters
 
-* titlenum: Required - This is the title number. Sample value is 3. 
+- **collection:** Required - Value is cfr.
 
-* partnum: Required - This is the part number. Sample value is 100. 
+- **titlenum:** Required - title number. Sample value is 3.
 
-* sectionnum: Optional - This is the section number. Sample value is 1. If section number is not provided the entire part will be returned. 
+- **partnum:** Required - part number. Sample value is 100.
 
-* year: Optional - This is the four digit numerical year OR mostrecent. If year is not provided the most recent version of the CFR section or part is returned. Default is most recent. Sample value is 2011. 
+- **sectionnum:** Optional - section number. Sample value is 1. If section number is not provided the entire part will be returned.
 
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are xml, mods, premis, contentdetail. 
+- **year:** Optional - four digit year OR mostrecent. If year is not provided the most recent version of the CFR section or part is returned. Default is most recent. Sample value is 2011.
 
-#### Examples:
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are xml, mods, premis, details, context, and related.
 
-* https://api.fdsys.gov/link?collection=cfr&titlenum=3&partnum=100&sectionnum=1&year=2011
+#### Examples
 
-* https://api.fdsys.gov/link?collection=cfr&titlenum=3&partnum=100&sectionnum=1&year=mostrecent
+- https://www.govinfo.gov/link/cfr/3/100?sectionnum=1&year=2018
 
-* https://api.fdsys.gov/link?collection=cfr&titlenum=3&partnum=100&sectionnum=1
+- https://www.govinfo.gov/link/cfr/3/100?sectionnum=1&year=mostrecent
 
-* https://api.fdsys.gov/link?collection=cfr&titlenum=3&partnum=100&sectionnum=1&link-type=premis
+- https://www.govinfo.gov/link/cfr/3/100?sectionnum=1
 
-* https://api.fdsys.gov/link?collection=cfr&titlenum=3&partnum=100&sectionnum=1&link-type=mods
+- https://www.govinfo.gov/link/cfr/3/100?sectionnum=1&link-type=premis
 
-* https://api.fdsys.gov/link?collection=cfr&titlenum=3&partnum=100 
+- https://www.govinfo.gov/link/cfr/3/100?sectionnum=1&link-type=mods
+
+- https://www.govinfo.gov/link/cfr/3/100
 
 ## Compilation of Presidential Documents (CPD)
 
-### Query: 
+### DCPD Type or Number Query
 
-document type, document number
+Return a specific DCPD document by Supplementary Materials Type or DCPD number
 
-#### Parameters:
+#### Parameters
 
-* collection: Required - Value is cpd. 
+- **collection:** Required - Value is cpd.
 
-* doctype: Required - Values are executiveorder, proclamation, determination. 
+- **year:** Required - four digit year. The first Daily Compilation of Presidential Documents (dcpd) document was published on 1/20/2009. Sample value is 2010.
 
-* docnum: Required - This is the numerical document number. Sample value is 13514. 
+- **dcpnumber:** Optional - five digit identifier on a dcpd document. It does not include the four digit year. Document are numbered sequentially within each year. Leading zeros can be supplied but are not required. Sample value is 00123. Either dcpdnumber or dcpdtype is required. If a document contains both a dcpdnumber and a dcpdtype, we recommend providing dcpdtype instead of dcpdnumber. If both are provided, precedence is given to dcpdnumber.
 
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail. 
+- **dcpdtype:** Optional - type of dcpd document. Values are digest, nominations, checklist, actsapproved. Either dcpdnumber or dcpdtype is required. If a document contains both a dcpdnumber and a dcpdtype, we recommend providing dcpdtype instead of dcpdnumber. If both are provided, precedence is given to dcpdnumber.
 
-#### Examples:
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are html, mods, premis, details, related.
 
-* https://api.fdsys.gov/link?collection=cpd&doctype=proclamation&docnum=8685 
+#### Examples
 
-* https://api.fdsys.gov/link?collection=cpd&doctype=executiveorder&docnum=13514&link-type=html 
+- https://www.govinfo.gov/link/cpd/2018?dcpdnumber=00849&link-type=details
 
-* https://api.fdsys.gov/link?collection=cpd&docnum=94-35&doctype=determination 
+- https://www.govinfo.gov/link/cpd/2022?dcpdtype=nominations
+  
+### DCPD doctype or number Query
 
-### Query: 
+Return DCPD documents by a specific presidential document type and number.
 
-dcpd type OR dcpd number
+#### Parameters
 
-#### Parameters:
+- **collection:** Required - Value is cpd.
 
-* collection: Required - Value is cpd. 
+- **doctype:** Required - Values are executiveorder, proclamation, determination.
 
-* year: Required - This is the four digit numerical year. The first Daily Compilation of Presidential Documents (dcpd) document was published on 1/20/2009. Sample value is 2010. 
+- **docnum:** Required - document number. Sample value is 13514.
 
-* dcpnumber: Optional - This is the five digit numerical identifier on a dcpd document. It does not include the four digit year. Document are numbered sequentially within each year. Leading zeros can be supplied but are not required. Sample value is 00123. Either dcpdnumber or dcpdtype is required. If a document contains both a dcpdnumber and a dcpdtype, we recommend providing dcpdtype instead of dcpdnumber. If both are provided, precedence is given to dcpdnumber. 
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are html, mods, premis, details.
 
-* dcpdtype: Optional - This is the type of dcpd document. Values are digest, nominations, checklist, actsapproved. Either dcpdnumber or dcpdtype is required. If a document contains both a dcpdnumber and a dcpdtype, we recommend providing dcpdtype instead of dcpdnumber. If both are provided, precedence is given to dcpdnumber. 
+#### Examples
 
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail. 
+- https://www.govinfo.gov/link/cpd/proclamation/9297
 
+- https://www.govinfo.gov/link/cpd/executiveorder/14104?link-type=html
 
-#### Examples:
-
-* https://api.fdsys.gov/link?collection=cpd&dcpdnumber=00123&year=2010&link-type=contentdetail 
-
-* https://api.fdsys.gov/link?collection=cpd&dcpdtype=nominations&year=2011 
+- https://www.govinfo.gov/link/cpd/determination/94-35?link-type=details
 
 ## Congressional Bills (BILLS)
 
-### Query: 
+### BILLS Query
 
 bill number, bill type, congress, bill version OR most recent
 
-#### Parameters:
+#### Parameters
 
-* collection: Required - Value is bills.
+- **collection:** Required - Value is bills.
 
-* billtype: Required - Values are hr, s, hjres, sjres, hconres, sconres, hres, sres.
+- **billtype:** Required - Values are hr, s, hjres, sjres, hconres, sconres, hres, sres.
 
-* billversion: Optional - If bill version is not provided, the most recent version of a bill is returned. Values are
+- **billversion:** Optional - If bill version is not provided, the most recent version of a bill is returned. Values are
 as, cps, fph, lth, ppv, rds, rhv, rhuc, ash, eah, fps, lts, pap, rev, rih, sc, eas, hdh, nat, pwah, reah, ris, ath, eh, hds, oph, rah, res, rsv, ats, eph, ihv, ops, ras, renr, rth, cdh, enr, iph, pav, rch, rfh, rts, cds, esv, ips, pch, rcs, rfs, s_p, cph, fah, isv, pcs, rdh, rft, sas, mostrecent.
 
-* billnum: Required - This is the numerical bill number. Sample value is 1027.
+- **billnum:** Required - bill number. Sample value is 1027.
 
-* congress: Required - This is the numerical Congress number. Sample value is 112.
+- **congress:** Required - Congress number. Sample value is 112.
 
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are xml, html, mods, premis, contentdetail.
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are xml, html, mods, premis, details.
 
-#### Examples:
+#### Examples
 
-* https://api.fdsys.gov/link?collection=bills&billtype=hr&billversion=ih&billnum=1&congress=112
+- https://www.govinfo.gov/link/bills/hr&billversion=ih&billnum=1&congress=112
 
-* https://api.fdsys.gov/link?collection=bills&billtype=hconres&billnum=17&congress=112&link-type=xml 
+- https://www.govinfo.gov/link/bills/118/s/2950?link-type=xml
 
 ## Congressional Calendars (CCAL)
 
-### Query: 
+### CCAL section Query
 
 chamber, section, publish date OR most recent
 
-#### Parameters:
+#### Parameters
 
-* collection: Required - Value is ccal.
+- **collection:** Required - Value is ccal.
 
-* chamber: Required - This is the chamber of Congress. Values are house, senate.
+- **chamber:** Required - chamber of Congress. Values are house, senate.
 
-* section: Required - This is the name of the calendar section. Recommend encoding special characters and spaces (%20). Common sample values include Unanimous Consent Agreements, Cover and Special Orders, Subjects on the Table, Union Calendar, Bills in Conference, Special Legislative Days.
+- **section:** Required - name of the calendar section. Recommend encoding special characters and spaces (%20). Common sample values include Unanimous Consent Agreements, Cover and Special Orders, Subjects on the Table, Union Calendar, Bills in Conference, Special Legislative Days.
 
-* publishdate: Optional - If date is not provided, the most recent version of the calendar is returned. Values are date formated as yyyy-mm-dd or mostrecent. Default is most recent.
+- **publishdate:** Optional - If date is not provided, the most recent version of the calendar is returned. Values are date formated as yyyy-mm-dd or mostrecent. Default is most recent.
 
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are html, mods, premis, details, context.
 
-#### Examples:
+#### Examples
 
-* https://api.fdsys.gov/link?collection=ccal&chamber=senate&section=Subjects%20on%20the%20Table
+- https://www.govinfo.gov/link/ccal/senate/Subjects%20on%20the%20Table
 
-* http://api.fdsys.gov/link?collection=ccal&chamber=senate&section=Subjects%20on%20the%20Table&publishdate=2011-12-01 
+- https://www.govinfo.gov/link/ccal/senate/Subjects%20on%20the%20Table?publishdate=2011-12-01
+
+### CCAL Latest Full Calendar Query
+
+Returns the latest full House or Senate Calendar
+
+#### Parameters
+
+- **collection:** Required - Value is ccal.
+
+- **chamber:** Required - chamber of Congress. Values are house, senate.
+
+- **publishdate:** Optional - If date is not provided, the most recent version of the calendar is returned. Values are date formated as yyyy-mm-dd or mostrecent. Default is most recent.
+
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are html, mods, premis, details, context, zip.
+
+#### Examples
+
+- https://www.govinfo.gov/link/ccal/latest/senate/
+
+- https://www.govinfo.gov/link/ccal/latest/house?publishdate=2023-10-20
 
 ## Congressional Committee Prints (CPRT)
 
-### Query: 
+### CPRT by Jacket Number Query
 
-congress, chamber, senate print number
+Returns a specific committee print by Congress and GPO jacket number
 
-#### Parameters:
+#### Parameters
 
-* collection: Required - Value is cprt.
+- **collection:** Required - Value is cprt.
 
-* congress: Required - This is the numerical Congress number. Sample value is 112.
+- **congress:** Required - Congress number. Sample value is 112.
 
-* chamber: Required - This is the chamber of Congress. Value is senate.
+- **jacketid:** - GPO jacket number. The jacket number is typically listed on the first page in the lower left corner. Jacket number is unique within a Congress. Sample value is 74-558.
 
-* printnum: Required - This is the numerical Senate print number. Senate prints are numbered consecutively across committees within a Congress. Sample value is 4.
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are html, mods, premis, details.
 
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
+#### Examples
 
-#### Example:
+- https://www.govinfo.gov/link/cprt/112/74-558
 
-* https://api.fdsys.gov/link?collection=cprt&congress=112&chamber=senate&printnum=4
+### CPRT by Senate Print Number Query
 
-### Query: 
+Returns a specific Senate committee print by Congress and unique Senate Print number
 
-congress, chamber, house print number, committee
+#### Parameters
 
-#### Parameters:
+- **collection:** Required - Value is cprt.
 
-* collection: Required - Value is cprt.
+- **congress:** Required - Congress number. Sample value is 112.
 
-* congress: Required - This is the numerical Congress number. Sample value is 109.
+- **chamber:** Required - chamber of Congress. Value is senate.
 
-* chamber: Required - This is the chamber of Congress. Value is house.
+- **printnum:** Required - Senate print number. Senate prints are numbered consecutively across committees within a Congress. Sample value is 4.
 
-* printnum: Required - This is the numerical House committee print number. House prints are not numbered consecutively across committees within a Congress. For example, 109-2 could exist for both the Ways and Means Committee and the Rules and Administration Committee within the 109th Congress. Sample value is 2.
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are html, mods, premis, details.
 
-* committee: Required - This is the name of the House committee. Recommend encoding special characters and spaces (%20). Sample value is Ways and Means.
+#### Example
 
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
+- https://www.govinfo.gov/link/cprt/112/senate/4
 
-#### Example:
+### CPRT by House Committee and Serial Number Query
 
-* https://api.fdsys.gov/link?collection=cprt&congress=109&chamber=house&printnum=2&committee=Ways+and+Means
+Returns a specific committee print by Congress, House Committee, and serial number
 
-### Query: 
+#### Parameters
 
-congress, jacket number
+- **collection:** Required - Value is cprt.
 
-#### Parameters:
+- **congress:** Required - Congress number. Sample value is 109.
 
-* collection: Required - Value is cprt.
+- **chamber:** Required - chamber of Congress. Value is house.
 
-* congress: Required - This is the numerical Congress number. Sample value is 112.
+- **printnum:** Required - House committee print number. House prints are not numbered consecutively across committees within a Congress. For example, 109-2 could exist for both the Ways and Means Committee and the Rules and Administration Committee within the 109th Congress. Sample value is 2.
 
-* jacketid: This is the GPO jacket number. The jacket number is typically listed on the first page in the lower left corner. Jacket number is unique within a Congress. Sample value is 74-558.
+- **committee:** Required - name of the House committee. Recommend encoding special characters and spaces (%20). Sample value is Ways and Means.
 
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are html, mods, premis, details.
 
-#### Examples:
+#### Example
 
-* https://api.fdsys.gov/link?collection=cprt&congress=112&jacketid=74-558
+- https://www.govinfo.gov/link/cprt/118/house/11/Ways%20and%20Means
 
 ## Congressional Documents (CDOC)
 
-### Query: 
+### CDOC by Jacket Number Query
+
+Return a specific Congressional Document by Congress and GPO Jacket number.
+
+#### Parameters
+
+- **collection:** Required - Value is cdoc.
+
+- **congress:** Required - Congress number. Sample value is 112.
+
+- **jacketid:** - GPO jacket number. The jacket number is typically listed on the first page in the lower left corner. Jacket number is unique within a Congress. Sample value is 66-208.
+
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are html, mods, premis, details.
+
+#### Examples
+
+- https://www.govinfo.gov/link/cdoc/112/66-208
+
+### CDOC by Document Type and Number Query
 
 congress, document type, document number
 
-#### Parameters:
+#### Parameters
 
-* collection: Required - Value is cdoc.
+- **collection:** Required - Value is cdoc.
 
-* doctype: Required - This is the congressional document type. Congressional documents can either be house documents, senate documents, or treaty documents. Values are hdoc, sdoc, tdoc.
+- **doctype:** Required - congressional document type. Congressional documents can either be house documents, senate documents, or treaty documents. Values are hdoc, sdoc, tdoc.
 
-* docnum: Required - This is the numerical document number. Congressional documents are numbered consecutively within a Congress for each document type. Sample value is 15. Note: congressional documents that have been processed through the GPO collection are currently not available through the Link Service.
+- **docnum:** Required - document number. Congressional documents are numbered consecutively within a Congress for each document type. Sample value is 15. Note:** congressional documents that have been processed through the GPO collection are currently not available through the Link Service.
 
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are html, mods, premis, details.
 
-#### Examples:
+#### Examples
 
-* https://api.fdsys.gov/link?collection=cdoc&congress=112&docnum=5&doctype=hdoc
-
-### Query: 
-
-congress, jacket number
-
-#### Parameters:
-
-* collection: Required - Value is cdoc.
-
-* congress: Required - This is the numberical Congress number. Sample value is 112.
-
-* jacketid: This is the GPO jacket number. The jacket number is typically listed on the first page in the lower left corner. Jacket number is unique within a Congress. Sample value is 66-208.
-
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
-
-#### Examples:
-
-* https://api.fdsys.gov/link?collection=cdoc&congress=112&jacketid=66-208 
+- https://www.govinfo.gov/link/cdoc/112/hdoc/5
 
 ## Congressional Hearings (CHRG)
 
-### Query: 
+### CHRG by Jacket Number Query
+
+Return a specific Congressional Hearing by Congress and GPO jacket number.
+
+#### Parameters
+
+- **collection:** Required - Value is chrg.
+
+- **congress:** Required - Congress number. Sample value is 105.
+
+- **jacketid:** - GPO jacket number. The jacket number is typically listed on the first page in the lower left corner. Jacket number is unique within a Congress. Sample value is 48-707.
+
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are html, mods, premis, details.
+
+#### Example
+
+- https://www.govinfo.gov/link/chrg/105/48-707?link-type=html
+- https://www.govinfo.gov/link/chrg/118/53-022
+
+
+### CHRG - Senate Hearing Number Query
 
 congress, chamber, senate hearing number
 
-#### Parameters:
+#### Parameters
 
-* collection: Required - Value is chrg.
+- **collection:** Required - Value is chrg.
 
-* congress: Required - This is the numerical Congress number. Sample value is 122.
+- **congress:** Required - Congress number. Sample value is 122.
 
-* chamber: Required - This is the chamber of Congress. Value is senate.
+- **chamber:** Required - chamber of Congress. Value is senate.
 
-* hearingnumber: Required - This is the numerical Senate hearing number. Senate hearings are numbered consecutively across committees within a Congress. Sample value is 122.
+- **hearingnumber:** Required - Senate hearing number. Senate hearings are numbered consecutively across committees within a Congress. Sample value is 122.
 
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are html, mods, premis, details.
 
-#### Example:
+#### Example
 
-* https://api.fdsys.gov/link?collection=chrg&chamber=senate&congress=112&hearingnumber=122
+- https://www.govinfo.gov/link/chrg/112/senate/122
 
-### Query: 
+### CHRG - House Serial Number Query
 
-congress, chamber, committee, house serial number
+Return a specific House Hearing by Congress, committee and serial number
 
-#### Parameters:
+#### Parameters
 
-* collection: Required - Value is chrg.
+- **collection:** Required - Value is chrg.
 
-* chamber: Required - This is the chamber of Congress. Value is house.
+- **chamber:** Required - chamber of Congress. Value is house.
 
-* committee: Required - This is the name of the House committee. Recommend encoding special characters and spaces (%20). Sample value is energy.
+- **committee:** Required - name of the House committee. Recommend encoding special characters and spaces (%20). Sample value is energy.
 
-* serialnumber: Required - This is the numerical house committee serial number. House hearings are not numbered consecutively across committees within a Congress. For example, 109-138 could exist for both the Energy Committee and the Rules and Administration Committee within the 109th Congress. Sample value is 138.
+- **serialnumber:** Required - house committee serial number. House hearings are not numbered consecutively across committees within a Congress. For example, 109-138 could exist for both the Energy Committee and the Rules and Administration Committee within the 109th Congress. Sample value is 138.
 
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are html, mods, premis, details.
 
-#### Example:
+#### Example
 
-* https://api.fdsys.gov/link?collection=chrg&chamber=house&congress=109&serialnumber=138&committee=energy
-
-### Query: 
-
-congress, jacket number
-
-#### Parameters:
-
-* collection: Required - Value is chrg.
-
-* congress: Required - This is the numerical Congress number. Sample value is 105.
-
-* jacketid: This is the GPO jacket number. The jacket number is typically listed on the first page in the lower left corner. Jacket number is unique within a Congress. Sample value is 48-707.
-
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
-
-#### Example:
-
-* https://api.fdsys.gov/link?collection=chrg&congress=105&jacketid=48-707&link-type=html 
+- https://www.govinfo.gov/link/chrg/109/house/energy/138
+- https://www.govinfo.gov/link/chrg/118/house/judiciary/31
 
 ## Congressional Record - Daily (CREC)
 
-### Query: 
+### CREC Page Number Query
 
-volume, page prefix, page number
+Return a specific Congressional Record document by volume, page prefix, and page number.
 
-#### Parameters:
+#### Parameters
 
-* collection: Required - Value is crec.
+- **collection:** Required - Value is crec.
 
-* volume: Required - This is the numerical volume number. Sample value is 158.
+- **volume:** Required - volume number. Sample value is 158.
 
-* pageprefix: Required - This is the page prefix that corresponds to the Congressional Record section. Sections are Daily Digest, House, Senate, and Extensions of Remarks. Values are d, h, s, e.
+- **pageprefix:** Required - page prefix that corresponds to the Congressional Record section. Sections are Daily Digest, House, Senate, and Extensions of Remarks. Values are d, h, s, e.
 
-* page: Required - This is the numerical page number. Congressional record pages are numbered consecutively in a section within a volume. Note: when multiple granules are contained on a page, content and metadata for the last granule on the page will be returned. Recommend selecting PDF link-type to return content for all granules on a page. Sample value is 234.
+- **page:** Required - page number. Congressional record pages are numbered consecutively in a section within a volume. **Note:** when multiple granules are contained on a page, content and metadata for the last granule on the page will be returned. Recommend selecting PDF link-type to return content for all granules on a page. Sample value is 234.
 
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are html, mods, premis, details.
 
-#### Examples:
+#### Examples
 
-* https://api.fdsys.gov/link?collection=crec&pageprefix=s&page=234&volume=158
+- https://www.govinfo.gov/link/crec/158/s/234
+- https://www.govinfo.gov/link/crec/169/h/2716?link-type=html
 
-### Query: 
+### CREC document type Query
 
-section, publish date OR most recent
+Return the latest Congressional Record Document by type. More information below. Note that in instances where there are multiple documents of a type for a given date, the desired document may not be returned. In this case, it would be preferable to use the page reference query above.
 
-#### Parameters:
+#### Parameters
 
-* collection: Required - Value is crec.
+- **collection:** Required - Value is crec.
 
-* section: Required - This is the Congressional Record section. Values are dailydigest, senate, house, extensions.
+- **type:** Optional - type of Congressional Record document within each section. Please see tables below for values.
 
-* publishdate: Optional - If date is not provided, the most recent version of the Congressional Record section is returned. Values are date formated as yyyy-mm-dd or mostrecent. Default is most recent.
+- **publishdate:** Optional - If date is not provided, the most recent version of the Congressional Record document is returned. Values are date formated as yyyy-mm-dd or mostrecent. Default is most recent.
 
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are mods, premis, contentdetail. Note: mods, premis, and contentdetail are returned at the package level because they are not available for section level granules.
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are html, mods, premis, details.
 
-#### Examples:
+#### Examples
 
-* https://api.fdsys.gov/link?collection=crec&section=dailydigest
+- https://www.govinfo.gov/link/crec/type/hclerk
+- https://www.govinfo.gov/link/crec/type/hclerk
 
-* https://api.fdsys.gov/link?collection=crec&section=dailydigest&publishdate=2011-11-22
+#### Type Values
 
-### Query: 
-
-document type, publish date OR most recent
-
-#### Parameters:
-
-* collection: Required - Value is crec.
-
-* type: Optional - This is the type of Congressional Record document within each section. Please see tables below for values.
-
-* publishdate: Optional - If date is not provided, the most recent version of the Congressional Record document is returned. Values are date formated as yyyy-mm-dd or mostrecent. Default is most recent.
-
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
-
-#### Examples:
-
-* https://api.fdsys.gov/link?collection=crec&type=hclerk
-
-#### Type Values 
-
-The information below lists the allowable values for the type field. Values are not case sensitive. Note: some values may produce multiple results. For example, both the House section and Senate section could contain a tributeto granule on the same day. In this case, the desired document may not be returned. 
+The information below lists the allowable values for the type field. Values are not case sensitive. Note: some values may produce multiple results. For example, both the House section and Senate section could contain a tributeto granule on the same day. In this case, the desired document may not be returned.
 
 ##### Daily Digest Type Values
 
 |Type Value | User Readable Value|
 |-----------|----------|
-|DDALLOTHER | All Other|
-|DDSCHAMBER | Senate Chamber Action|
-|DDSCMEETINGS | Senate Committee Meetings|
-|DDHCHAMBER | House Chamber Action|
-|DDHCMEETINGS | House Committee Meetings|
-|DDNEWPUBLAWS | New Public Laws|
-|DDAHEAD | Congressional Program Ahead|
-|DDCOMMITTEEMEETINGS | Committee Meetings Upcoming|
-|DDRESUMEONGOING | Resume of Congressional Activity - Ongoing|
-|DDRESUMEFINAL | Resume of Congressional Activity - Final|
-|DDENDMATTER | End Matter|
+|[DDALLOTHER](https://www.govinfo.gov/link/crec/type/DDALLOTHER)| All Other|
+|[DDSCHAMBER](https://www.govinfo.gov/link/crec/type/DDSCHAMBER)| Senate Chamber Action|
+|[DDSCMEETINGS](https://www.govinfo.gov/link/crec/type/DDSCMEETINGS)| Senate Committee Meetings|
+|[DDHCHAMBER](https://www.govinfo.gov/link/crec/type/DDHCHAMBER)| House Chamber Action|
+|[DDHCMEETINGS](https://www.govinfo.gov/link/crec/type/DDHCMEETINGS)| House Committee Meetings|
+|[DDNEWPUBLAWS](https://www.govinfo.gov/link/crec/type/DDNEWPUBLAWS)| New Public Laws|
+|[DDAHEAD](https://www.govinfo.gov/link/crec/type/DDAHEAD)| Congressional Program Ahead|
+|[DDCOMMITTEEMEETINGS](https://www.govinfo.gov/link/crec/type/DDCOMMITTEEMEETINGS)| Committee Meetings Upcoming|
+|[DDRESUMEONGOING](https://www.govinfo.gov/link/crec/type/DDRESUMEONGOING)| Resume of Congressional Activity - Ongoing|
+|[DDRESUMEFINAL](https://www.govinfo.gov/link/crec/type/DDRESUMEFINAL)| Resume of Congressional Activity - Final|
+|[DDENDMATTER](https://www.govinfo.gov/link/crec/type/DDENDMATTER)| End Matter|
 
 ##### House, Senate, and Extensions of Remarks Type Values
 
 |Type Value | User Readable Value|
 |-----------|--------------------|
-|ALLOTHER | All Other Legislative Business|
-|PRAYER | Prayer|
-|PLEDGE | Pledge of Allegiance|
-|ADJOURNMENT | Adjournment|
-|EXECUTIVECOMM | Executive and other Communications|
-|JOINTMEETINGS | Joint Meetings of the House and Senate|
-|ENROLLEDSIGNED | Enrolled Legislation Signed|
-|ENROLLEDPRESENTED | Enrolled Legislation Presented|
-|MSGPRESIDENT | Messages From the President|
-|TECHNICALCORRECTIONS | Making Technical Corrections|
-|PERSONALEXPLAIN | Personal Explanation|
-|RECOGNIZING | Recognitions|
-|HONORING | Honoring|
-|COMMEMORATING | Commemorations|
-|CELEBRATING | Celebrations|
-|COMMENDING | Commending|
-|PASSINGOF | On the passing of|
-|TRIBUTETO | Tribute|
-|CONGRATULATIONS | Congratulations|
-|RETIREMENT | Retirement Of|
-|DESIGNATING | Designating|
-|INMEMORYOF | In Memory Of|
+|[ALLOTHER](https://www.govinfo.gov/link/crec/type/ALLOTHER)| All Other Legislative Business|
+|[PRAYER](https://www.govinfo.gov/link/crec/type/PRAYER)| Prayer|
+|[PLEDGE](https://www.govinfo.gov/link/crec/type/PLEDGE)| Pledge of Allegiance|
+|[ADJOURNMENT](https://www.govinfo.gov/link/crec/type/ADJOURNMENT)| Adjournment|
+|[EXECUTIVECOMM](https://www.govinfo.gov/link/crec/type/EXECUTIVECOMM)| Executive and other Communications|
+|[JOINTMEETINGS](https://www.govinfo.gov/link/crec/type/JOINTMEETINGS)| Joint Meetings of the House and Senate|
+|[ENROLLEDSIGNED](https://www.govinfo.gov/link/crec/type/ENROLLEDSIGNED)| Enrolled Legislation Signed|
+|[ENROLLEDPRESENTED](https://www.govinfo.gov/link/crec/type/ENROLLEDPRESENTED)| Enrolled Legislation Presented|
+|[MSGPRESIDENT](https://www.govinfo.gov/link/crec/type/MSGPRESIDENT)| Messages From the President|
+|[TECHNICALCORRECTIONS](https://www.govinfo.gov/link/crec/type/TECHNICALCORRECTIONS)| Making Technical Corrections|
+|[PERSONALEXPLAIN](https://www.govinfo.gov/link/crec/type/PERSONALEXPLAIN)| Personal Explanation|
+|[RECOGNIZING](https://www.govinfo.gov/link/crec/type/RECOGNIZING)| Recognitions|
+|[HONORING](https://www.govinfo.gov/link/crec/type/HONORING)| Honoring|
+|[COMMEMORATING](https://www.govinfo.gov/link/crec/type/COMMEMORATING)| Commemorations|
+|[CELEBRATING](https://www.govinfo.gov/link/crec/type/CELEBRATING)| Celebrations|
+|[COMMENDING](https://www.govinfo.gov/link/crec/type/COMMENDING)| Commending|
+|[PASSINGOF](https://www.govinfo.gov/link/crec/type/PASSINGOF)| On the passing of|
+|[TRIBUTETO](https://www.govinfo.gov/link/crec/type/TRIBUTETO)| Tribute|
+|[CONGRATULATIONS](https://www.govinfo.gov/link/crec/type/CONGRATULATIONS)| Congratulations|
+|[RETIREMENT](https://www.govinfo.gov/link/crec/type/RETIREMENT)| Retirement Of|
+|[DESIGNATING](https://www.govinfo.gov/link/crec/type/DESIGNATING)| Designating|
+|[INMEMORYOF](https://www.govinfo.gov/link/crec/type/INMEMORYOF)| In Memory Of|
 
 
 ##### House Type Values
 
 Type Value | User Readable Value
 |-----------|---------------------|
-|HDESIGNATION | Designation of The Speaker Pro Tempore|
-|HJOURNAL | The Journal|
-|HMESSAGE | Message From the Senate|
-|HCLERK | Communication From The Clerk of the House|
-|HANNOUNCEMENT | Announcement by the Speaker|
-|HMORNINGDEBATE | Morning Hour Debates|
-|HREPORTON | Report On|
-|HCONFREPORTON | Conference Report On|
-|HSENATEBILLREFERRED | Senate Bill Referred|
-|HLEGPROGRAM | Legislative Program|
-|HTIMELIMIT | Time Limitation Of Referred Bill|
-|HEXPENDITURE | Expenditure Reports Concerning Official Foreign Travel|
-|HCORRECTIONS | Honoring|
-|COMMEMORATING | Commemorations|
-|CELEBRATING | Celebrations|
-|COMMENDING | Commending|
-|PASSINGOF | On the passing of|
-|TRIBUTETO | Tribute|
-|CONGRATULATIONS | Congratulations|
-|RETIREMENT | Retirement Of|
-|DESIGNATING | Designating|
-|INMEMORYOF | In Memory Of|
-|HPETITIONS | Petitions|
-|HAMENDMENTS | Amendments|
-|HEARMARKS | Congressional Earmarks, Limited Tax Benefits, Or Limited Tariff Benefits|
+|[HDESIGNATION](https://www.govinfo.gov/link/crec/type/HDESIGNATION)| Designation of The Speaker Pro Tempore|
+|[HJOURNAL](https://www.govinfo.gov/link/crec/type/HJOURNAL)| The Journal|
+|[HMESSAGE](https://www.govinfo.gov/link/crec/type/HMESSAGE)| Message From the Senate|
+|[HCLERK](https://www.govinfo.gov/link/crec/type/HCLERK)| Communication From The Clerk of the House|
+|[HANNOUNCEMENT](https://www.govinfo.gov/link/crec/type/HANNOUNCEMENT)| Announcement by the Speaker|
+|[HMORNINGDEBATE](https://www.govinfo.gov/link/crec/type/HMORNINGDEBATE)| Morning Hour Debates|
+|[HREPORTON](https://www.govinfo.gov/link/crec/type/HREPORTON)| Report On|
+|[HCONFREPORTON](https://www.govinfo.gov/link/crec/type/HCONFREPORTON)| Conference Report On|
+|[HSENATEBILLREFERRED](https://www.govinfo.gov/link/crec/type/HSENATEBILLREFERRED)| Senate Bill Referred|
+|[HLEGPROGRAM](https://www.govinfo.gov/link/crec/type/HLEGPROGRAM)| Legislative Program|
+|[HTIMELIMIT](https://www.govinfo.gov/link/crec/type/HTIMELIMIT)| Time Limitation Of Referred Bill|
+|[HEXPENDITURE](https://www.govinfo.gov/link/crec/type/HEXPENDITURE)| Expenditure Reports Concerning Official Foreign Travel|
+|[HCORRECTIONS](https://www.govinfo.gov/link/crec/type/HCORRECTIONS)| Honoring|
+|[COMMEMORATING](https://www.govinfo.gov/link/crec/type/COMMEMORATING)| Commemorations|
+|[CELEBRATING](https://www.govinfo.gov/link/crec/type/CELEBRATING)| Celebrations|
+|[COMMENDING](https://www.govinfo.gov/link/crec/type/COMMENDING)| Commending|
+|[PASSINGOF](https://www.govinfo.gov/link/crec/type/PASSINGOF)| On the passing of|
+|[TRIBUTETO](https://www.govinfo.gov/link/crec/type/TRIBUTETO)| Tribute|
+|[CONGRATULATIONS](https://www.govinfo.gov/link/crec/type/CONGRATULATIONS)| Congratulations|
+|[RETIREMENT](https://www.govinfo.gov/link/crec/type/RETIREMENT)| Retirement Of|
+|[DESIGNATING](https://www.govinfo.gov/link/crec/type/DESIGNATING)| Designating|
+|[INMEMORYOF](https://www.govinfo.gov/link/crec/type/INMEMORYOF)| In Memory Of|
+|[HPETITIONS](https://www.govinfo.gov/link/crec/type/HPETITIONS)| Petitions|
+|[HAMENDMENTS](https://www.govinfo.gov/link/crec/type/HAMENDMENTS)| Amendments|
+|[HEARMARKS](https://www.govinfo.gov/link/crec/type/HEARMARKS)| Congressional Earmarks, Limited Tax Benefits, Or Limited Tariff Benefits|
 
 ##### Senate Type Values
 
 |Type Value | User Readable Value|
 |-----------|---------------------|
-|SENATEALLOTHER | All Other Legislative Business|
-|SAPPOINTMENT | Appointment of The Acting President Pro Tempore|
-|SORDER | Order of Procedure|
-|SSCHEDULE | Schedule|
-|SSSCHEDULE | Senate Schedule|
-|SMEASUREDCAL | Measures Placed on the Calendar|
-|SMBUSINESS | Morning Business|
-|SCONBUSINESS | Conclusion of Morning Business|
-|SRECESS | Recess|
-|SADDITIONAL | Additional Statements|
-|SMSGHOUSE | Message From the House|
-|SCOMMREPORT | Reports of Committees|
-|SEXECREPORT | Executive Reports of Committees|
-|SPETANDMEM | Petitions and Memorials|
-|SREFERRED | Measures Referred|
-|SREADFIRST | Measures Read the First Time|
-|SDISCHARGED | Measures Discharged|
-|SDICHARGEREF | Discharge and Referral|
-|SMSGEXEC | Executive Messages Referred|
-|SINTROBILLS | Introduction of Bills and Joint Resolutions|
-|SSUBMISSION | Submission of Concurrent and Senate Resolutions|
-|SCOSPONSORS | Additional Cosponsors|
-|SSTATEMENTS | Statements on Introduced Bills and Joint Resolutions|
-|SSUBMITTED | Submitted Resolutions|
-|SRESOLUTION | Senate Resolution|
-|SAMENDMENTSSUB | Amendments Submitted and Proposed|
-|SAMENDMENTTEXT | Text of Amendments|
-|SNOTICE | Notice of Hearings|
-|SAUTHORITY | Authority for Committees to Meet|
-|SPRIVILEGES | Privileges of the Floor|
-|SPROGRAM | Program|
-|SCALENDAR | The Calendar|
-|SCONSENTAGREE | Unanimous Consent Agreement|
-|SCONSENTREQUEST | Unanimous Consent Request|
-|SORDERFOR | Order For|
-|SEXECSESSION | Executive Session|
-|SEXECCAL | Executive Calendar|
-|SLEGISLATIVE | Legislative Session|
-|SNOMINATIONS | Nominations|
-|SWITHDRAWAL | Withdrawals|
-|SCONFIRMATIONS | Confirmation|
-|SCLOTURE | Cloture Motion|
+|[SENATEALLOTHER](https://www.govinfo.gov/link/crec/type/SENATEALLOTHER)| All Other Legislative Business|
+|[SAPPOINTMENT](https://www.govinfo.gov/link/crec/type/SAPPOINTMENT)| Appointment of The Acting President Pro Tempore|
+|[SORDER](https://www.govinfo.gov/link/crec/type/SORDER)| Order of Procedure|
+|[SSCHEDULE](https://www.govinfo.gov/link/crec/type/SSCHEDULE)| Schedule|
+|[SSSCHEDULE](https://www.govinfo.gov/link/crec/type/SSSCHEDULE)| Senate Schedule|
+|[SMEASUREDCAL](https://www.govinfo.gov/link/crec/type/SMEASUREDCAL)| Measures Placed on the Calendar|
+|[SMBUSINESS](https://www.govinfo.gov/link/crec/type/SMBUSINESS)| Morning Business|
+|[SCONBUSINESS](https://www.govinfo.gov/link/crec/type/SCONBUSINESS)| Conclusion of Morning Business|
+|[SRECESS](https://www.govinfo.gov/link/crec/type/SRECESS)| Recess|
+|[SADDITIONAL](https://www.govinfo.gov/link/crec/type/SADDITIONAL)| Additional Statements|
+|[SMSGHOUSE](https://www.govinfo.gov/link/crec/type/SMSGHOUSE)| Message From the House|
+|[SCOMMREPORT](https://www.govinfo.gov/link/crec/type/SCOMMREPORT)| Reports of Committees|
+|[SEXECREPORT](https://www.govinfo.gov/link/crec/type/SEXECREPORT)| Executive Reports of Committees|
+|[SPETANDMEM](https://www.govinfo.gov/link/crec/type/SPETANDMEM)| Petitions and Memorials|
+|[SREFERRED](https://www.govinfo.gov/link/crec/type/SREFERRED)| Measures Referred|
+|[SREADFIRST](https://www.govinfo.gov/link/crec/type/SREADFIRST)| Measures Read the First Time|
+|[SDISCHARGED](https://www.govinfo.gov/link/crec/type/SDISCHARGED)| Measures Discharged|
+|[SDICHARGEREF](https://www.govinfo.gov/link/crec/type/SDICHARGEREF)| Discharge and Referral|
+|[SMSGEXEC](https://www.govinfo.gov/link/crec/type/SMSGEXEC)| Executive Messages Referred|
+|[SINTROBILLS](https://www.govinfo.gov/link/crec/type/SINTROBILLS)| Introduction of Bills and Joint Resolutions|
+|[SSUBMISSION](https://www.govinfo.gov/link/crec/type/SSUBMISSION)| Submission of Concurrent and Senate Resolutions|
+|[SCOSPONSORS](https://www.govinfo.gov/link/crec/type/SCOSPONSORS)| Additional Cosponsors|
+|[SSTATEMENTS](https://www.govinfo.gov/link/crec/type/SSTATEMENTS)| Statements on Introduced Bills and Joint Resolutions|
+|[SSUBMITTED](https://www.govinfo.gov/link/crec/type/SSUBMITTED)| Submitted Resolutions|
+|[SRESOLUTION](https://www.govinfo.gov/link/crec/type/SRESOLUTION)| Senate Resolution|
+|[SAMENDMENTSSUB](https://www.govinfo.gov/link/crec/type/SAMENDMENTSSUB)| Amendments Submitted and Proposed|
+|[SAMENDMENTTEXT](https://www.govinfo.gov/link/crec/type/SAMENDMENTTEXT)| Text of Amendments|
+|[SNOTICE](https://www.govinfo.gov/link/crec/type/SNOTICE)| Notice of Hearings|
+|[SAUTHORITY](https://www.govinfo.gov/link/crec/type/SAUTHORITY)| Authority for Committees to Meet|
+|[SPRIVILEGES](https://www.govinfo.gov/link/crec/type/SPRIVILEGES)| Privileges of the Floor|
+|[SPROGRAM](https://www.govinfo.gov/link/crec/type/SPROGRAM)| Program|
+|[SCALENDAR](https://www.govinfo.gov/link/crec/type/SCALENDAR)| The Calendar|
+|[SCONSENTAGREE](https://www.govinfo.gov/link/crec/type/SCONSENTAGREE)| Unanimous Consent Agreement|
+|[SCONSENTREQUEST](https://www.govinfo.gov/link/crec/type/SCONSENTREQUEST)| Unanimous Consent Request|
+|[SORDERFOR](https://www.govinfo.gov/link/crec/type/SORDERFOR)| Order For|
+|[SEXECSESSION](https://www.govinfo.gov/link/crec/type/SEXECSESSION)| Executive Session|
+|[SEXECCAL](https://www.govinfo.gov/link/crec/type/SEXECCAL)| Executive Calendar|
+|[SLEGISLATIVE](https://www.govinfo.gov/link/crec/type/SLEGISLATIVE)| Legislative Session|
+|[SNOMINATIONS](https://www.govinfo.gov/link/crec/type/SNOMINATIONS)| Nominations|
+|[SWITHDRAWAL](https://www.govinfo.gov/link/crec/type/SWITHDRAWAL)| Withdrawals|
+|[SCONFIRMATIONS](https://www.govinfo.gov/link/crec/type/SCONFIRMATIONS)| Confirmation|
+|[SCLOTURE](https://www.govinfo.gov/link/crec/type/SCLOTURE)| Cloture Motion|
 
 ##### Extensions of Remarks Type Values
 
 |Type Value | User Readable Value|
 |-----------|--------------------|
-|ESENATECOMMITTEE | Senate Committee Meetings|
-|EINTRODUCTIONOF | Introducing Legislation|
+|[ESENATECOMMITTEE](https://www.govinfo.gov/link/crec/type/ESENATECOMMITTEE)| Senate Committee Meetings|
+|[EINTRODUCTIONOF](https://www.govinfo.gov/link/crec/type/EINTRODUCTIONOF)| Introducing Legislation|
+
+
+### CREC Section Query
+
+Return a specific Congressional Record section
+
+#### Parameters
+
+- **collection:** Required - Value is crec.
+
+- **section:** Required - Congressional Record section. Values are dailydigest, senate, house, extensions.
+
+- **publishdate:** Optional - If date is not provided, the most recent version of the Congressional Record section is returned. Values are date formated as yyyy-mm-dd or mostrecent. Default is most recent.
+
+- **link-type: Optional - format of the returned document. Default is pdf. Other values are mods, premis, details. Note:** mods, premis, and details are returned at the package level because they are not available for section level granules.
+
+#### Examples
+
+- https://www.govinfo.gov/link/crec/section/dailydigest
+- https://www.govinfo.gov/link/crec/section/dailydigest?publishdate=2011-11-22
+- https://www.govinfo.gov/link/crec/section/dailydigest?publishdate=2023-09-30
+
+### Senate Amendments Query
+
+Return the text of a specific Senate Amendment within the Congressional Record
+
+#### Parameters
+
+- **collection:** Required - Value is crec.
+
+- **congress:** Required - Congress number. Sample value is 117.
+
+- **amendmentNumber:** Required - Senate amendment number. Sample value is 5010.
+
+- **link-type:** Optional - format of the returned document. Default is html. Other values are mods, premis, details, context, related.
+
+#### Examples
+
+- https://www.govinfo.gov/link/crec/samendment/117/5010
 
 ## Congressional Reports (CRPT)
 
-### Query: 
+### Report Type and Number Query
 
 congress, report type, report number
 
-#### Parameters:
+#### Parameters
 
-* collection: Required - Value is crpt.
+- **collection:** Required - Value is crpt.
 
-* congress: Required - This is the numerical Congress number. Sample value is 112.
+- **congress:** Required - Congress number. Sample value is 112.
 
-* reportnum: Required - This is the numerical report number. Congressional reports are numbered consecutively within a Congress for each report type. Sample value is 154.
+- **reportnum:** Required - report number. Congressional reports are numbered consecutively within a Congress for each report type. Sample value is 154.
 
-* doctype: Required - This is the congressional report type. Congressional reports can either be house reports, senate reports, or senate executive reports. Values are hrpt, srpt, erpt.
+- **doctype:** Required - congressional report type. Congressional reports can either be house reports, senate reports, or senate executive reports. Values are hrpt, srpt, erpt.
 
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are html, mods, premis, details, context, related.
 
-#### Examples:
+#### Examples
 
-* https://api.fdsys.gov/link?collection=crpt&congress=112&reportnum=154&doctype=srpt
+- https://www.govinfo.gov/link/crpt/112/srpt/154/
+- https://www.govinfo.gov/link/crpt/117/hrpt/663?link-type=details
 
-### Query: 
+### Associated Bill Query
 
-associated bill, congress
+Returns a specific Congressional report based on an associated Congressional bill
 
-#### Parameters:
+#### Parameters
 
-* collection: Required - Value is crpt.
+- **collection:** Required - Value is crpt.
 
-* congress: Required - This is the numerical Congress number. Sample value is 112.
+- **congress:** Required - Congress number. Sample value is 112.
 
-* associatedbillnum: Required - Congressional reports often accompany a specific bill. Note: some associated bill numbers may produce multiple results. This will occur when two different reports are issued to accompany a single bill within a single Congress. In this case, the desired report may not be returned. Sample value is h.r.2297.
+- **associatedbillnum: Required - Congressional reports often accompany a specific bill. Note:** some associated bill numbers may produce multiple results. This will occur when two different reports are issued to accompany a single bill within a single Congress. In this case, the desired report may not be returned. Sample value is h.r.2297.
 
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are html, mods, premis, details, context, related.
 
-#### Examples:
+#### Examples
 
-* https://api.fdsys.gov/link?collection=crpt&associatedbillnum=h.r.2297&congress=112
+- https://www.govinfo.gov/link/crpt/112/h.r.2297
+- https://www.govinfo.gov/link/crpt/118/s.311
 
 ## Federal Register (FR)
 
-### Query: 
+### FR Volume and Page Number Query
 
-volume, page number
+Return a specific portion of the Federal Register by Volume and page citation
 
-#### Parameters:
+#### Parameters
 
-* collection: Required - Value is fr.
+- **collection:** Required - Value is fr.
 
-* volume: Required - This is the numerical volume number. Sample value is 76.
+- **volume:** Required - volume number. Sample value is 76.
 
-* page: Required - This is the numerical page number. Federal Register pages are numbered consecutively within a volume. Note: when multiple granules are contained on a page, content and metadata for the last granule on the page will be returned. Recommend selecting PDF link-type to return content for all granules on a page. Sample value is 575.
+- **page: Required - page number. Federal Register pages are numbered consecutively within a volume. Note:** when multiple granules are contained on a page, content and metadata for the last granule on the page will be returned. Recommend selecting PDF link-type to return content for all granules on a page. Sample value is 575.
 
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are html, mods, premis, details, context, related.
 
-#### Examples:
+#### Examples
 
-* https://api.fdsys.gov/link?collection=fr&volume=76&page=575
+- https://www.govinfo.gov/link/fr/76/575
+- https://www.govinfo.gov/link/fr/87/8949?link-type=related
 
-### Query: 
+### Federal Register document number Query
 
-Federal Register document number
+Returns specific FR content by FR document number
 
-#### Parameters:
+#### Parameters
 
-* collection: Required - Value is fr.
+- **publishdate:** Optional If date is not provided, the most recent version of the Federal Register is returned. Values are date formated as yyyy-mm-dd or mostrecent. Default is most recent.
 
-* frdocnum: Required - The is the FR doc number that is listed at the end of each Federal Register document. Sample value is 2010-32535.
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are toc, mods, premis, details, context, zip.
 
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
+#### Examples
 
-#### Examples:
+- https://www.govinfo.gov/link/fr/2010-32535
+- https://www.govinfo.gov/link/fr/2022-03394
+### Latest Federal Register Query
 
-* https://api.fdsys.gov/link?collection=fr&frdocnum=2010-32535
+Returns the latest edition of the Federal Register
+
+#### Parameters
+
+- **collection:** Required - Value is fr.
+
+- **frdocnum:** Required - The is the FR doc number that is listed at the end of each Federal Register document. Sample value is 2010-32535.
+
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are html, mods, premis, details.
+
+#### Examples
+
+- https://www.govinfo.gov/link/fr/latest
+- https://www.govinfo.gov/link/fr/latest?link-type=toc 
+
 
 ## Public and Private Laws (PLAW)
 
-### Query: 
+### Congress, Law Type and Number Query
 
-congress, law type, law number
+Returns a public or private law based on Congress, law type, and number
 
-#### Parameters:
+#### Parameters
 
-* collection: Required - Value is plaw.
+- **collection:** Required - Value is plaw.
 
-* congress: Required - This is the numerical Congress number. Sample value is 111.
+- **congress:** Required - Congress number. Sample value is 111.
 
-* lawtype: Required - This is the law type. Laws can either be public laws or private laws. Values are public, private.
+- **lawtype:** Required - law type. Laws can either be public laws or private laws. Values are public, private.
 
-* lawnum: Required - This is the numerical law number. Laws are numbered consecutively within each law type within a Congress. Sample value is 78.
+- **lawnum:** Required - law number. Laws are numbered consecutively within each law type within a Congress. Sample value is 78.
 
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are html, mods, premis, details, related.
 
-#### Example:
+#### Example
 
-* https://api.fdsys.gov/link?collection=plaw&congress=111&lawtype=public&lawnum=78
+- https://www.govinfo.gov/link/plaw/111/public/78
+- https://www.govinfo.gov/link/plaw/115/private/1?link-type=details 
+
+### Associated Bill Query
+
+Return a public or private law (if it exists) based on associated bill numbers
+
+#### Parameters
+
+- **collection:** Required - Value is plaw.
+
+- **congress:** Required - Congress number. Sample value is 111.
+
+- **associatedbillnum:** Required - Public and private laws are associated with a primary bill number. The primary bill number is listed at the beginning of the law. Sample value is S. 3397.
+
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are html, mods, premis, details.
+
+#### Example
+
+- https://www.govinfo.gov/link/plaw/111/s.3397
+- https://www.govinfo.gov/link/plaw/111/h.r.2544
 
 
-### Query: 
+### Statutes at Large citation Query
 
-associated bill number, congress
+Returns public or private law based on Statutes at Large citation
 
-#### Parameters:
+#### Parameters
 
-* collection: Required - Value is plaw.
+- **collection:** Required - Value is plaw.
 
-* congress: Required - This is the numerical Congress number. Sample value is 111.
+- **statutecitation:** Required - A Statutes at Large citation is listed at the top of each page of a law. Use a + (plus sign) in place of spaces in the citation. Sample value is 124+stat+2859.
 
-* associatedbillnum: Required - Public and private laws are associated with a primary bill number. The primary bill number is listed at the beginning of the law. Sample value is S. 3397.
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are html, mods, premis, details.
 
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
+#### Example
 
-#### Example:
-
-* https://api.fdsys.gov/link?collection=plaw&associatedbillnum=s.3397&congress=111
-
-### Query: 
-
-Statutes at Large citation
-
-#### Parameters:
-
-* collection: Required - Value is plaw.
-
-* statutecitation: Required - A Statutes at Large citation is listed at the top of each page of a law. Use a + (plus sign) in place of spaces in the citation. Sample value is 124+stat+2859.
-
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
-
-#### Example:
-
-* https://api.fdsys.gov/link?collection=plaw&statutecitation=124+stat+2859 
+- https://www.govinfo.gov/link/plaw/124+stat+2859
+- https://www.govinfo.gov/link/plaw/131+stat+2278?link-type=details
 
 ## Statutes at Large (STATUTE)
 
-### Query: 
+### Statute by Congress and Law Query
 
-congress, law type, law number
+Returns a public or private law in the U.S. Statutes at Large based on Congress, law type, and number
 
-#### Parameters:
+#### Parameters
 
-* collection: Required - Value is statute.
+- **collection:** Required - Value is statute.
 
-* congress: Required - This is the numerical Congress number. Sample value is 108.
+- **congress:** Required - Congress number. Sample value is 108.
 
-* lawtype: Required - This is the law type. Laws can either be public laws or private laws. Values are public, private.
+- **lawtype:** Required - law type. Laws can either be public laws or private laws. Values are public, private.
 
-* lawnum: Required - This is the numerical law number. Laws are numbered consecutively within each law type within a Congress. Sample value is 841.
+- **lawnum:** Required - law number. Laws are numbered consecutively within each law type within a Congress. Sample value is 841.
 
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are html, mods, premis, details.
 
-#### Example:
+#### Example
 
-* https://api.fdsys.gov/link?collection=statute&congress=108&lawtype=public&lawnum=481
+- https://www.govinfo.gov/link/statute/108/public/481
+- https://www.govinfo.gov/link/statute/115/public/114
 
-### Query: 
+### Statute Citation Query
 
-volume, page number
+Returns a Statutes at Large document based on Statute Citation
 
-#### Parameters:
+#### Parameters
 
-* collection: Required - Value is statute.
+- **collection:** Required - Value is statute.
 
-* volume: Required - This is the numerical volume number. Sample value is 118.
+- **volume:** Required - volume number. Sample value is 118.
 
-* page: Required - This is the numerical page number. Statutes at Large pages are numbered consecutively within a volume. Note: when multiple granules are contained on a page, content and metadata for the last granule on the page will be returned. Recommend selecting PDF link-type to return content for all granules on a page. Sample value is 3910.
+- **page: Required - page number. Statutes at Large pages are numbered consecutively within a volume. Note:** when multiple granules are contained on a page, content and metadata for the last granule on the page will be returned. Recommend selecting PDF link-type to return content for all granules on a page. Sample value is 3910.
 
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are html, mods, premis, details, context.
 
-#### Example:
+#### Example
 
-* https://api.fdsys.gov/link?collection=statute&volume=118&page=3910
+- https://www.govinfo.gov/link/statute/118/3910
+- https://www.govinfo.gov/link/statute/131/2278
 
 ## United States Code (USCODE)
 
-### Query: 
+### Query
 
 title number, type, section, year OR most recent
 
-#### Parameters:
+#### Parameters
 
-* collection: Required - Value is uscode.
+- **collection:** Required - Value is uscode.
 
-* title: Required - This is the title number. Sample value is 5.
+- **title:** Required - title number. Sample value is 5.
 
-* section: Required - This is the section number. Sample value is 104.
+- **section:** Required - section number. Sample value is 104.
 
-* type: Optional - This is the U.S. Code section type. Values are usc, uscappendix. Default value is usc.
-year Optional - This is the four digit numerical year OR mostrecent. If year is not provided the most recent version of the U.S. Code section is returned. Default is most recent. Sample value is 2010.
+- **type:** Optional - U.S. Code section type. Values are usc, uscappendix. Default value is usc.
+year Optional - four digit year OR mostrecent. If year is not provided the most recent version of the U.S. Code section is returned. Default is most recent. Sample value is 2010.
 
-* link-type: Optional - This is the format of the returned document. Default is pdf. Other values are html, mods, premis, contentdetail.
+- **link-type:** Optional - format of the returned document. Default is pdf. Other values are html, mods, premis, details.
 
-#### Examples:
+#### Examples
 
-* https://api.fdsys.gov/link?collection=uscode&title=50&year=2011&section=797&type=usc
+- https://www.govinfo.gov/link/uscode/50/797?year=2011&type=usc
+- https://www.govinfo.gov/link/uscode/50/797
+- https://www.govinfo.gov/link/uscode/54/101121?year=mostrecent&link-type=details
+- https://www.govinfo.gov/link/uscode/50/2403-1?type=uscappendix
+- https://www.govinfo.gov/link/uscode/28/32?type=uscappendix
 
-* https://api.fdsys.gov/link?collection=uscode&title=50&year=2011&section=797
-
-* https://api.fdsys.gov/link?collection=uscode&title=50&year=mostrecent&section=797
-
-* https://api.fdsys.gov/link?collection=uscode&title=50&section=797&link-type=html
-
-* https://api.fdsys.gov/link?collection=uscode&title=50&year=2011&section=2403-1&type=uscappendix
-
-* https://api.fdsys.gov/link?collection=uscode&title=50&year=2011&section=2403-1a&type=uscappendix
-
-* https://api.fdsys.gov/link?collection=uscode&title=50&year=2011&section=2410c&type=uscappendix
-
-## Common Errors:
+## Common Errors
 
 ### Multiple Results Found
 
@@ -720,21 +769,16 @@ This error occurs if a match document was not found for the given parameters. Pl
 
 This error occurs when request parameters fail validation. Possible causes include the following:
 
-* No queries found for COLLECTION CODE. This error occurs if the value for collection is incorrect or has not been enabled yet. Please check the documentation for available collections and collection codes.
+- No queries found for COLLECTION CODE. This error occurs if the value for collection is incorrect or has not been enabled yet. Please check the documentation for available collections and collection codes.
 
-* Request parameter XXXX is not found but is required. This error occurs if a required parameter is missing in the URL. Please check the documentation for required parameters for each collection.
+- Request parameter XXXX is not found but is required. This error occurs if a required parameter is missing in the URL. Please check the documentation for required parameters for each collection.
 
-* The value provided for XXXX is invalid. One of the following [XXXX, YYYY] is expected. This error occurs if a value provided for a parameter is not among the listed choices. Please check the documentation for parameter values.
+- The value provided for XXXX is invalid. One of the following [XXXX, YYYY] is expected. This error occurs if a value provided for a parameter is not among the listed choices. Please check the documentation for parameter values.
 
 ### Content File Not Found
 
-This error can occur for an invalid or unavailable link-type value. Allowable values are pdf, html, mods, premis and contentdetail. This error can also occur if a requested link-type is not available for a specific document.
+This error can occur for an invalid or unavailable link-type value. Allowable values are pdf, html, mods, premis and details. This error can also occur if a requested link-type is not available for a specific document.
 
 ### System Error
 
-Please contact contactcenter@gpo.gov to report any system errors encountered while using the Link Service. 
-
-Cheers!
-
-
-
+Please report any errors encountered while using the Link Service on https://ask.gpo.gov/s/contactsupport using the `govinfo.gov question` category. Please include the link you tried generating and what issue you are seeing.
