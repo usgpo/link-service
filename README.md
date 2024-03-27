@@ -743,7 +743,8 @@ title number, type, section, year OR most recent
 - **section:** Required - section number. Sample value is 104.
 
 - **type:** Optional - U.S. Code section type. Values are usc, uscappendix. Default value is usc.
-year Optional - four digit year OR mostrecent. If year is not provided the most recent version of the U.S. Code section is returned. Default is most recent. Sample value is 2010.
+  
+- **year:** Optional - four digit year OR mostrecent. If year is not provided the most recent version of the U.S. Code section is returned. Default is most recent. Sample value is 2010.
 
 - **link-type:** Optional - format of the returned document. Default is pdf. Other values are html, mods, premis, details.
 
